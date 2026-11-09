@@ -1,0 +1,10 @@
+<h1>Pokémons</h1>
+
+<div class="row">
+    @for(char of starwarsList(); track char.name) {
+    <div class="col-md-3">
+        <app-character-item-component [character]="char"
+            (characterClicked)="openStarWarsModal($event)"></app-character-item-component>
+    </div>
+    }
+</div>

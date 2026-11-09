@@ -1,0 +1,51 @@
+.app-navbar {
+	background: #172b2b;
+	border-bottom: 3px solid #ba5737;
+	padding: 0.75rem 0;
+}
+
+.app-navbar-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.app-navbar .navbar-brand {
+	color: #fff;
+	font-weight: 800;
+	margin: 0;
+}
+
+.navbar-brand span {
+	color: #9dc9b8;
+	font-size: 0.65rem;
+	letter-spacing: 0.1em;
+	margin-left: 0.35rem;
+	vertical-align: middle;
+}
+
+.app-navbar .nav-link {
+	border-radius: 0.35rem;
+	color: #d7e3de;
+	font-weight: 600;
+	padding: 0.5rem 0.75rem;
+}
+
+.app-navbar .nav-link:hover,
+.app-navbar .nav-link.active {
+	background: #dcebe5;
+	color: #17604c;
+}
+
+.app-content {
+	min-height: calc(100vh - 64px);
+}
+
+@media (max-width: 420px) {
+	.app-navbar-content {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+}

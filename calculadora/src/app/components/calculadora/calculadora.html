@@ -1,0 +1,40 @@
+<div class="calculator-container">
+
+  <h2>{{ title }}</h2>
+
+
+  <input 
+    type="text" 
+    class="display" 
+    [value]="displayValue" 
+    [readOnly]="isReadOnly" 
+  />
+
+  <div class="buttons-grid">
+
+    <button (click)="clear()" class="btn-clear">C</button>
+    
+    <!-- Botones de Operación (+ y -) -->
+    <button (click)="setOperator('+')" class="btn-operator">+</button>
+    <button (click)="setOperator('-')" class="btn-operator">-</button>
+
+    <!-- Botones de Dígitos (7 al 9) -->
+    <button (click)="pressDigit('7')">7</button>
+    <button (click)="pressDigit('8')">8</button>
+    <button (click)="pressDigit('9')">9</button>
+
+    <!-- Botones de Dígitos (4 al 6) -->
+    <button (click)="pressDigit('4')">4</button>
+    <button (click)="pressDigit('5')">5</button>
+    <button (click)="pressDigit('6')">6</button>
+
+    <!-- Botones de Dígitos (1 al 3) -->
+    <button (click)="pressDigit('1')">1</button>
+    <button (click)="pressDigit('2')">2</button>
+    <button (click)="pressDigit('3')">3</button>
+
+    <!-- Botón 0 y Resultado (=) -->
+    <button (click)="pressDigit('0')" class="btn-zero">0</button>
+    <button (click)="calculate()" class="btn-equal">=</button>
+  </div>
+</div>

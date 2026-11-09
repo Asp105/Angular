@@ -1,0 +1,61 @@
+<div class="container">
+  <a routerLink="/berry-list" class="btn btn-outline-secondary mb-4">
+    <i class="bi bi-arrow-left"></i> Volver al listado
+  </a>
+
+  @if (state(); as s) {
+    @switch (s.status) {
+      @case ('loading') {
+        <div class="text-center py-5"><div class="spinner-border text-danger"></div></div>
+      }
+      @case ('error') {
+        <div class="alert alert-danger">No se encontró la baya <strong>{{ id() }}</strong>.</div>
+      }
+      @case ('ok') {
+        @let b = s.data;
+        <div class="card shadow border-0 overflow-hidden">
+          <div class="row g-0">
+            <div class="col-md-4 bg-body-secondary d-flex flex-column align-items-center justify-content-center p-4 text-center">
+              <img [src]="sprite(b)" [alt]="b.name" style="width: 120px; image-rendering: pixelated">
+              <span class="badge rounded-pill fs-6 px-3 mt-3 type-badge type-{{ b.natural_gift_type.name }}">
+                {{ b.natural_gift_type.name }}
+              </span>
+              <small class="text-body-secondary mt-2">Tipo de Don Natural</small>
+            </div>
+
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <p class="text-body-secondary mb-0">#{{ b.id }}</p>
+                <h2 class="text-capitalize mb-3">{{ b.name }} berry</h2>
+
+                <div class="row text-center g-2 mb-4">
+                  <div class="col-6 col-md-3"><div class="border rounded p-2"><div class="text-xs text-body-secondary">CRECIMIENTO</div><strong>{{ b.growth_time }} h</strong></div></div>
+                  <div class="col-6 col-md-3"><div class="border rounded p-2"><div class="text-xs text-body-secondary">COSECHA MÁX.</div><strong>{{ b.max_harvest }}</strong></div></div>
+                  <div class="col-6 col-md-3"><div class="border rounded p-2"><div class="text-xs text-body-secondary">TAMAÑO</div><strong>{{ b.size }} mm</strong></div></div>
+                  <div class="col-6 col-md-3"><div class="border rounded p-2"><div class="text-xs text-body-secondary">POTENCIA</div><strong>{{ b.natural_gift_power }}</strong></div></div>
+                </div>
+
+                <ul class="list-group list-group-flush mb-4">
+                  <li class="list-group-item d-flex justify-content-between px-0">Firmeza <span class="text-capitalize fw-semibold">{{ prettify(b.firmness.name) }}</span></li>
+                  <li class="list-group-item d-flex justify-content-between px-0">Suavidad <span class="fw-semibold">{{ b.smoothness }}</span></li>
+                  <li class="list-group-item d-flex justify-content-between px-0">Sequedad del suelo <span class="fw-semibold">{{ b.soil_dryness }}</span></li>
+                </ul>
+
+                <h5>Sabores</h5>
+                @for (f of b.flavors; track f.flavor.name) {
+                  <div class="d-flex align-items-center mb-2">
+                    <span class="text-capitalize text-body-secondary" style="width: 90px">{{ f.flavor.name }}</span>
+                    <strong style="width: 40px">{{ f.potency }}</strong>
+                    <div class="progress flex-grow-1" style="height: 10px">
+                      <div class="progress-bar bg-danger" [style.width.%]="flavorPct(f.potency)"></div>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  }
+</div>

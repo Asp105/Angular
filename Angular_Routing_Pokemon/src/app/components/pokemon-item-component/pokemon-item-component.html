@@ -1,0 +1,9 @@
+<a [routerLink]="['/pokemon-detail', pokemon().id]" class="poke-card-link">
+  <div class="card poke-card h-100 shadow-sm text-center border-0">
+    <img [src]="pokemon().sprite" [alt]="pokemon().name" loading="lazy" class="card-img-top p-3 mx-auto">
+    <div class="card-body pt-0">
+      <small class="text-body-secondary">#{{ pokemon().id }}</small>
+      <h6 class="card-title text-capitalize mb-0">{{ pokemon().name.replaceAll('-', ' ') }}</h6>
+    </div>
+  </div>
+</a>

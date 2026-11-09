@@ -1,0 +1,54 @@
+.episode-card {
+	overflow: hidden;
+	border: 1px solid #d9e3df;
+	border-top: 4px solid #ba5737;
+	border-radius: 0.5rem;
+	background: #fff;
+	box-shadow: 0 0.35rem 1rem rgb(23 43 43 / 6%);
+	transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.episode-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 0.75rem 1.5rem rgb(23 43 43 / 12%);
+}
+
+.episode-card .card-body {
+	padding: 1.25rem;
+}
+
+.episode-code {
+	background: #dcebe5;
+	color: #17604c;
+	font-size: 0.75rem;
+	padding: 0.5rem 0.65rem;
+}
+
+.episode-title {
+	color: #172b2b;
+	font-size: 1.15rem;
+	font-weight: 750;
+	line-height: 1.35;
+}
+
+.episode-date {
+	color: #62706c;
+	font-size: 0.9rem;
+}
+
+.episode-card .btn {
+	border-radius: 0.35rem;
+	font-weight: 650;
+	padding: 0.65rem 0.8rem;
+	text-align: left;
+}
+
+.episode-card .btn span {
+	float: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.episode-card {
+		transition: none;
+	}
+}

@@ -1,0 +1,77 @@
+<div class="container">
+  <a routerLink="/pokemon-list" class="btn btn-outline-secondary mb-4">
+    <i class="bi bi-arrow-left"></i> Volver al listado
+  </a>
+
+  @switch (state().status) {
+    @case ('loading') {
+      <div class="text-center py-5"><div class="spinner-border text-danger"></div></div>
+    }
+    @case ('error') {
+      <div class="alert alert-danger">No se encontró el Pokémon <strong>{{ id() }}</strong>.</div>
+    }
+  }
+
+  @if (state(); as s) {
+    @if (s.status === 'ok') {
+      @let p = s.data;
+      <div class="card shadow border-0 overflow-hidden">
+        <div class="row g-0">
+          <div class="col-md-5 bg-body-secondary d-flex flex-column align-items-center justify-content-center p-4 text-center">
+            <img [src]="image(p)" [alt]="p.name" class="detail-img">
+            <div class="mt-3 d-flex gap-2 justify-content-center">
+              @for (t of p.types; track t.slot) {
+                <span class="badge rounded-pill fs-6 px-3 type-badge type-{{ t.type.name }}">{{ t.type.name }}</span>
+              }
+            </div>
+            <div class="mt-3 d-flex gap-2">
+              @if (p.sprites.front_default) { <img [src]="p.sprites.front_default" alt="frente" class="sprite-small"> }
+              @if (p.sprites.back_default) { <img [src]="p.sprites.back_default" alt="espalda" class="sprite-small"> }
+              @if (p.sprites.front_shiny) { <img [src]="p.sprites.front_shiny" alt="shiny" class="sprite-small"> }
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <div class="card-body p-4">
+              <p class="text-body-secondary mb-0">#{{ p.id }}</p>
+              <h2 class="text-capitalize mb-3">{{ p.name }}</h2>
+
+              <div class="row text-center g-2 mb-4">
+                <div class="col-4"><div class="border rounded p-2"><div class="text-xs text-body-secondary">ALTURA</div><strong>{{ p.height / 10 }} m</strong></div></div>
+                <div class="col-4"><div class="border rounded p-2"><div class="text-xs text-body-secondary">PESO</div><strong>{{ p.weight / 10 }} kg</strong></div></div>
+                <div class="col-4"><div class="border rounded p-2"><div class="text-xs text-body-secondary">EXP. BASE</div><strong>{{ p.base_experience ?? '—' }}</strong></div></div>
+              </div>
+
+              <h5>Habilidades</h5>
+              <div class="mb-4 d-flex flex-wrap gap-2">
+                @for (a of p.abilities; track a.slot) {
+                  <span class="badge text-bg-secondary text-capitalize">
+                    {{ prettify(a.ability.name) }}@if (a.is_hidden) { <i class="bi bi-eye-slash ms-1" title="Oculta"></i> }
+                  </span>
+                }
+              </div>
+
+              <h5>Estadísticas base</h5>
+              @for (st of p.stats; track st.stat.name) {
+                <div class="d-flex align-items-center mb-2">
+                  <span class="text-capitalize text-body-secondary" style="width: 140px">{{ prettify(st.stat.name) }}</span>
+                  <strong style="width: 40px">{{ st.base_stat }}</strong>
+                  <div class="progress flex-grow-1" style="height: 10px">
+                    <div class="progress-bar {{ statClass(st.base_stat) }}" [style.width.%]="pct(st.base_stat)"></div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between mt-4">
+        @if (p.id > 1) {
+          <a [routerLink]="['/pokemon-detail', prevId()]" class="btn btn-outline-danger"><i class="bi bi-chevron-left"></i> #{{ prevId() }}</a>
+        } @else { <span></span> }
+        <a [routerLink]="['/pokemon-detail', nextId()]" class="btn btn-outline-danger">#{{ nextId() }} <i class="bi bi-chevron-right"></i></a>
+      </div>
+    }
+  }
+</div>

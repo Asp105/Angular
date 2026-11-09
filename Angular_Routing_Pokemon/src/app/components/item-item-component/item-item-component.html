@@ -1,0 +1,9 @@
+<a [routerLink]="['/item-detail', item().id]" class="poke-card-link">
+  <div class="card poke-card h-100 shadow-sm text-center border-0">
+    <img [src]="item().sprite" [alt]="item().name" loading="lazy" class="card-img-top p-3 mx-auto">
+    <div class="card-body pt-0">
+      <small class="text-body-secondary">#{{ item().id }}</small>
+      <h6 class="card-title text-capitalize mb-0">{{ item().name.replaceAll('-', ' ') }}</h6>
+    </div>
+  </div>
+</a>

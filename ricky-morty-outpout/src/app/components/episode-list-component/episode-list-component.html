@@ -1,0 +1,18 @@
+<main class="container py-5 episodes-page">
+    <header class="episodes-heading mb-4">
+        <div>
+            <p class="episodes-eyebrow mb-2">THE MULTIVERSE ARCHIVE</p>
+            <h1 class="mb-0">Episodes</h1>
+        </div>
+        <span class="badge episodes-count">{{ episodeList().length }} episodes</span>
+    </header>
+
+    <div class="row g-4">
+        @for (episode of episodeList(); track episode.id) {
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <app-episode-item-component [episode]="episode"
+                (episodeClicked)="openEpisodeModal($event)"></app-episode-item-component>
+        </div>
+        }
+    </div>
+</main>

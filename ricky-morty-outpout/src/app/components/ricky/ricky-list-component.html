@@ -1,0 +1,10 @@
+<h1>Characters</h1>
+
+<div class="row">
+    @for(rick of rickyList(); track rick.name) {
+    <div class="col-md-3">
+       <app-ricky-item-component [ricky]="rick"
+           (rickyClicked)="openRickyModal($event)"></app-ricky-item-component>
+    </div>
+    }
+</div>

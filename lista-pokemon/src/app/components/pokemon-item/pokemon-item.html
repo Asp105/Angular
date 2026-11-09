@@ -1,0 +1,8 @@
+<div class="card h-100 text-center shadow-sm">
+  <img [src]="pokemon()?.imageUrl" class="card-img-top p-3" [alt]="pokemon()?.name" style="height: 200px; object-fit: contain;">
+  <div class="card-body">
+    <span class="badge bg-primary">#{{ pokemon()?.id }}</span>
+    <h5 class="card-title mt-2">{{ pokemon()?.name }}</h5>
+    <p class="card-text text-muted mb-0">{{ pokemon()?.type }}</p>
+  </div>
+</div>

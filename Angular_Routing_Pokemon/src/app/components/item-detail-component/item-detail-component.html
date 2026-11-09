@@ -1,0 +1,58 @@
+<div class="container">
+  <a routerLink="/item-list" class="btn btn-outline-secondary mb-4">
+    <i class="bi bi-arrow-left"></i> Volver al listado
+  </a>
+
+  @if (state(); as s) {
+    @switch (s.status) {
+      @case ('loading') {
+        <div class="text-center py-5"><div class="spinner-border text-danger"></div></div>
+      }
+      @case ('error') {
+        <div class="alert alert-danger">No se encontró el objeto <strong>{{ id() }}</strong>.</div>
+      }
+      @case ('ok') {
+        @let i = s.data;
+        <div class="card shadow border-0 overflow-hidden">
+          <div class="row g-0">
+            <div class="col-md-4 bg-body-secondary d-flex flex-column align-items-center justify-content-center p-4 text-center">
+              <img [src]="sprite(i)" [alt]="i.name" style="width: 120px; image-rendering: pixelated">
+              <span class="badge text-bg-danger rounded-pill fs-6 px-3 mt-3 text-capitalize">{{ prettify(i.category.name) }}</span>
+            </div>
+
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <p class="text-body-secondary mb-0">#{{ i.id }}</p>
+                <h2 class="text-capitalize mb-3">{{ prettify(i.name) }}</h2>
+                <p class="lead">{{ effect(i) }}</p>
+
+                <div class="row text-center g-2 mb-4">
+                  <div class="col-6"><div class="border rounded p-2"><div class="text-xs text-body-secondary">COSTE</div><strong>{{ i.cost }} ₽</strong></div></div>
+                  <div class="col-6"><div class="border rounded p-2"><div class="text-xs text-body-secondary">POTENCIA DE LANZAMIENTO</div><strong>{{ i.fling_power ?? '—' }}</strong></div></div>
+                </div>
+
+                @if (i.attributes.length) {
+                  <h5>Atributos</h5>
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    @for (a of i.attributes; track a.name) {
+                      <span class="badge text-bg-secondary text-capitalize">{{ prettify(a.name) }}</span>
+                    }
+                  </div>
+                }
+
+                @if (i.held_by_pokemon.length) {
+                  <h5>Lo llevan de forma salvaje</h5>
+                  <div class="d-flex flex-wrap gap-2">
+                    @for (h of i.held_by_pokemon; track h.pokemon.name) {
+                      <span class="badge text-bg-light border text-capitalize">{{ h.pokemon.name }}</span>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  }
+</div>

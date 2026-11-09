@@ -1,0 +1,20 @@
+
+<nav class="navbar app-navbar">
+	<div class="container app-navbar-content">
+		<a class="navbar-brand" routerLink="/ricky-list">
+			Rick &amp; Morty <span>DATABASE</span>
+		</a>
+		<div class="navbar-nav flex-row gap-2">
+			<a class="nav-link" routerLink="/ricky-list" routerLinkActive="active" ariaCurrentWhenActive="page">
+				Personajes
+			</a>
+			<a class="nav-link" routerLink="/episode-list" routerLinkActive="active" ariaCurrentWhenActive="page">
+				Episodios
+			</a>
+		</div>
+	</div>
+</nav>
+
+<main class="app-content">
+	<router-outlet></router-outlet>
+</main>

@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title">Detalles</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+    <p>Episode: {{ episodeDetail?.name }}!</p>
+    <p>Air Date: {{ episodeDetail?.air_date }}</p>
+    <p>Created: {{ episodeDetail?.created }}</p>
+    <p>Episode: {{ episodeDetail?.episode}}</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close()">Close</button>
+</div>
