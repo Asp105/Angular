@@ -1,0 +1,204 @@
+<div class="container my-4">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="row g-3">
+
+    <h4 class="mt-3">Clinica Veterinaria</h4>
+
+    <div class="col-md-6">
+      <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+      <input id="nombre" type="text" formControlName="nombre" class="form-control"
+        [class.is-invalid]="isInvalidField('nombre')" />
+      @if (isInvalidField('nombre')) {
+        <div class="invalid-feedback">
+          @if (registerForm.get('nombre')?.hasError('required')) { <div>El nombre es obligatorio</div> }
+          @if (registerForm.get('nombre')?.hasError('minlength')) { <div>Mínimo 2 caracteres</div> }
+          @if (registerForm.get('nombre')?.hasError('maxlength')) { <div>Máximo 30 caracteres</div> }
+          @if (registerForm.get('nombre')?.hasError('pattern')) { <div>Solo se permiten letras</div> }
+        </div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label for="apellidos" class="form-label">Apellidos <span class="text-danger">*</span></label>
+      <input id="apellidos" type="text" formControlName="apellidos" class="form-control"
+        [class.is-invalid]="isInvalidField('apellidos')" />
+      @if (isInvalidField('apellidos')) {
+        <div class="invalid-feedback">
+          @if (registerForm.get('apellidos')?.hasError('required')) { <div>Los apellidos son obligatorios</div> }
+          @if (registerForm.get('apellidos')?.hasError('minlength')) { <div>Mínimo 2 caracteres</div> }
+          @if (registerForm.get('apellidos')?.hasError('maxlength')) { <div>Máximo 50 caracteres</div> }
+          @if (registerForm.get('apellidos')?.hasError('pattern')) { <div>Solo se permiten letras</div> }
+        </div>
+      }
+    </div>
+
+
+    <div class="col-md-6">
+      <label for="telefono" class="form-label">Teléfono de contacto <span class="text-danger">*</span></label>
+      <input id="telefono" type="tel" formControlName="telefono" class="form-control"
+        [class.is-invalid]="isInvalidField('telefono')" />
+      @if (isInvalidField('telefono')) {
+        <div class="invalid-feedback">
+          Introduce un móvil español válido
+        </div>
+      }
+    </div>
+
+
+    <div class="col-md-6">
+      <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+      <input id="email" type="email" formControlName="email" class="form-control"
+        [class.is-invalid]="isInvalidField('email')" />
+      @if (isInvalidField('email')) {
+        <div class="invalid-feedback">
+          @if (registerForm.get('email')?.hasError('required')) { <div>El email es obligatorio</div> }
+          @if (registerForm.get('email')?.hasError('email')) { <div>Formato de email no válido</div> }
+        </div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label for="nombreMascota" class="form-label">Nombre Mascota <span class="text-danger">*</span></label>
+      <input id="nombreMascota" type="text" formControlName="nombreMascota" class="form-control"
+        [class.is-invalid]="isInvalidField('nombreMascota')" />
+      @if (isInvalidField('nombreMascota')) {
+        <div class="invalid-feedback">
+          @if (registerForm.get('nombreMascota')?.hasError('required')) { <div>El nombre de la mascota es obligatorio</div> }
+          @if (registerForm.get('nombreMascota')?.hasError('minlength')) { <div>Mínimo 2 caracteres</div> }
+          @if (registerForm.get('nombreMascota')?.hasError('maxlength')) { <div>Máximo 20 caracteres</div> }
+          @if (registerForm.get('nombreMascota')?.hasError('pattern')) { <div>Solo se permiten letras, espacios y guiones</div> }
+
+        </div>
+      }
+    </div>
+
+    <div class="col-md-4">
+      <label for="especie" class="form-label">Especie <span class="text-danger">*</span></label>
+      <select id="especie" formControlName="especie" class="form-select"
+        [class.is-invalid]="isInvalidField('especie')">
+        <option value="">Selecciona...</option>
+        @for (e of especie; track e) {
+          <option [value]="e">{{ e }}</option>
+        }
+      </select>
+      @if (isInvalidField('especie')) {
+        <div class="invalid-feedback">
+          @if (registerForm.get('especie')?.hasError('required')) { <div>Selecciona una especie</div> }
+        </div>
+      }
+    </div>
+
+    <div class="col-md-4">
+      <label for="sexo" class="form-label">Sexo <span class="text-danger">*</span></label>
+      <select id="sexo" formControlName="sexo" class="form-select"
+        [class.is-invalid]="isInvalidField('especie')">
+        <option value="">Selecciona...</option>
+        @for (s of sexo; track s) {
+          <option [value]="s">{{ s }}</option>
+        }
+      </select>
+      @if (isInvalidField('sexo')) {
+        <div class="invalid-feedback">
+          @if (registerForm.get('sexo')?.hasError('required')) { <div>Indica el sexo de la mascota</div> }
+        </div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label for="raza" class="form-label">Raza </label>
+      <input id="raza" type="text" formControlName="raza" class="form-control"
+        [class.is-invalid]="isInvalidField('raza')" />
+      @if (isInvalidField('raza')) {
+        <div class="invalid-feedback">
+          @if (registerForm.get('raza')?.hasError('maxlength')) { <div>Máximo 40 caracteres</div> }
+        </div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label for="edad" class="form-label">Edad </label>
+      <input id="edad" type="number" formControlName="edad" class="form-control"
+        [class.is-invalid]="isInvalidField('edad')" />
+      @if (isInvalidField('edad')) {
+        <div class="invalid-feedback">
+          @if (registerForm.get('edad')?.hasError('min')) { <div>Mínimo 0 años</div> }
+          @if (registerForm.get('edad')?.hasError('max')) { <div>Máximo 30 años</div> }
+        </div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label for="pesoKg" class="form-label">Peso en KG </label>
+      <input id="pesoKg" type="number" formControlName="pesoKg" class="form-control"
+        [class.is-invalid]="isInvalidField('pesoKg')" />
+      @if (isInvalidField('pesoKg')) {
+        <div class="invalid-feedback">
+          @if (registerForm.get('pesoKg')?.hasError('min')) { <div>Mínimo 0.1 Kg</div> }
+          @if (registerForm.get('pesoKg')?.hasError('max')) { <div>Máximo 90 Kg</div> }
+        </div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label for="numMicrochip" class="form-label">Numero de microchip </label>
+      <input id="numMicrochip" type="text" formControlName="numMicrochip" class="form-control"
+        [class.is-invalid]="isInvalidField('numMicrochip')" />
+      @if (isInvalidField('numMicrochip')) {
+        <div class="invalid-feedback">
+          @if (registerForm.get('numMicrochip')?.hasError('required')) { <div>El microchip es obligatorio</div> }  
+          @if (registerForm.get('numMicrochip')?.hasError('pattern')) { <div>El microchip debe tener exactamente 15 dígitos numéricos</div> }
+        </div>
+      }
+    </div>
+
+
+    <div class="col-12">
+      <label for="contraseña" class="form-label">Contraseña <span class="text-danger">*</span></label>
+      <input id="contraseña" type="password" formControlName="contraseña" class="form-control"
+        [class.is-invalid]="isInvalidField('contraseña')" />
+      @if (isInvalidField('contraseña')) {
+        <div class="invalid-feedback">
+          @if (registerForm.get('contraseña')?.hasError('required')) { <div>La contraseña es obligatoria</div> }
+          @if (registerForm.get('contraseña')?.hasError('minlength')) { <div>Mínimo 8 caracteres</div> }
+          @if (registerForm.get('contraseña')?.hasError('maxlength')) { <div>Máximo 20 caracteres</div> }
+          @if (!checkPassword('[A-Z]')) { <div>Debe contener al menos una mayúscula</div> }
+          @if (!checkPassword('[a-z]')) { <div>Debe contener al menos una minúscula</div> }
+          @if (!checkPassword('[0-9]')) { <div>Debe contener al menos un número</div> }
+          @if (!checkPassword('[^a-zA-Z0-9]')) { <div>Debe contener al menos un carácter especial</div> }
+        </div>
+      }
+    </div>
+
+
+    <div class="col-12">
+      <div class="form-check">
+        <input id="politicaPrivacidad" type="checkbox" formControlName="politicaPrivacidad" class="form-check-input"
+          [class.is-invalid]="isInvalidField('politicaPrivacidad')" />
+        <label for="politicaPrivacidad" class="form-check-label">
+          Acepto la política de privacidad <span class="text-danger">*</span>
+        </label>
+        @if (isInvalidField('politicaPrivacidad')) {
+          <div class="invalid-feedback">
+            Debes aceptar los términos y condiciones
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-check">
+        <input id="recordatorios" type="checkbox" formControlName="recordatorios" class="form-check-input"
+          [class.is-invalid]="isInvalidField('recordatorios')" />
+        <label for="recordatorios" class="form-check-label">
+          Quieres recibir recordatorios de vacunas por email
+        </label>
+      </div>
+    </div>
+
+
+
+    <div class="col-12 mt-3">
+      <button type="submit" class="btn btn-primary">Confirmar registro</button>
+    </div>
+
+  </form>
+</div>
