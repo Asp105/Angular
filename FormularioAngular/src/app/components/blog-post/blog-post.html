@@ -4,7 +4,7 @@
       <div class="card p-4 shadow-sm">
         <h3 class="card-title mb-4">Nueva Publicación</h3>
 
-        <form (ngSubmit)="onSubmit()">
+        <form>
 
           <div class="mb-3">
             <label for="title" class="form-label">Título</label>
@@ -48,7 +48,7 @@
             </div>
           }
 
-          <button type="submit" class="btn btn-primary w-100">Guardar</button>
+          <button type="button" class="btn btn-primary w-100" (click)="onSubmit()">Guardar</button>
 
         </form>
       </div>

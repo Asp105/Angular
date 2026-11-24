@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component,  } from '@angular/core';
+import { FormControl, ReactiveFormsModule,  } from '@angular/forms';
 
 @Component({
   imports: [ReactiveFormsModule],
@@ -9,7 +9,6 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class BlogPost {
 
-  // Instancias independientes de FormControl
   title = new FormControl('');
   description = new FormControl('');
   category = new FormControl('');

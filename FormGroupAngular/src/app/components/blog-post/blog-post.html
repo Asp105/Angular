@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card p-4 shadow-sm">
+        <h3 class="card-title mb-4">Nueva Publicación</h3>
+
+        <form [formGroup]="formulario">
+
+          <div class="mb-3">
+            <label for="title" class="form-label">Título</label>
+            <input id="title" type="text" class="form-control" formControlName="title">
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea id="description" class="form-control" rows="3" formControlName="description"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="category" class="form-label">Categoría</label>
+            <select id="category" class="form-select" formControlName="category">
+              <option value="">Selecciona una opción...</option>
+              @for (cat of categories; track cat) {
+                <option [value]="cat">{{ cat }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="tags" class="form-label">Etiquetas</label>
+            <input id="tags" type="text" class="form-control" formControlName="tags" placeholder="ej. angular, typescript">
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email del autor</label>
+            <input id="email" type="email" class="form-control" formControlName="email">
+          </div>
+
+          <div class="form-check mb-3">
+            <input id="publishNow" type="checkbox" class="form-check-input" formControlName="publishNow">
+            <label for="publishNow" class="form-check-label">Publicar ahora</label>
+          </div>
+
+          @if (!formulario.get('publishNow')?.value) {
+            <div class="mb-3">
+              <label for="publishDate" class="form-label">Fecha de publicación</label>
+              <input id="publishDate" ngbDatepicker #d="ngbDatepicker" class="form-control" formControlName="publishDate" (click)="d.toggle()">
+            </div>
+          }
+
+          <button type="button" class="btn btn-primary w-100" (click)="onSubmit()">Guardar</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
